@@ -1,0 +1,18 @@
+.card {
+  background: white;
+
+  border-radius: 2px;
+  box-shadow: 1px 1px 5px 0 rgba(136,136,136,1);
+
+  .card-title {
+    padding: 20px 20px;
+    border-bottom: solid 1px #ccc;
+
+    font-weight: bold;
+  }
+
+  .card-body {
+    //padding: 20px;
+
+  }
+}

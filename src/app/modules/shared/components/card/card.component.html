@@ -1,0 +1,11 @@
+<div class="card">
+  <div
+    class="card-title"
+    *ngIf="title">
+    {{ title }}
+  </div>
+  <div class="card-body">
+    <ng-content></ng-content>
+  </div>
+
+</div>
