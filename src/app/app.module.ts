@@ -9,6 +9,7 @@ import { AuthService } from "./modules/auth/services/auth.service";
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from "@angular/common/http";
 import { AuthHttpInterceptorService } from "./modules/auth/services/auth-http-interceptor.service";
 import { RootComponent } from './components/root/root.component';
+import {LoggerModule, NGXLogger, NgxLoggerLevel} from 'ngx-logger';
 
 @NgModule({
   declarations: [
@@ -21,18 +22,24 @@ import { RootComponent } from './components/root/root.component';
     AuthModule,
     SharedModule,
     HttpClientModule,
+    LoggerModule.forRoot(
+      {
+        // serverLoggingUrl: '/api/logs',
+        level: NgxLoggerLevel.DEBUG,
+        serverLogLevel: NgxLoggerLevel.ERROR
+      }),
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptorService,
       multi: true,
-      deps: [AuthService]
+      deps: [AuthService, NGXLogger]
     },
     {
       provide: AuthService,
       useClass: AuthService,
-      deps: [HttpClient]
+      deps: [HttpClient, NGXLogger]
     },
   ],
   bootstrap: [AppComponent]

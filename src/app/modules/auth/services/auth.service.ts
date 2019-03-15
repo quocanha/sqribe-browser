@@ -5,6 +5,7 @@ import {UsernameAndPasswordAuthenticationToken} from "../../../../lib/api/auth/U
 import {Authentication} from "../../../../lib/api/auth/Authentication.interface";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
+import {NGXLogger} from "ngx-logger";
 
 @Injectable()
 export class AuthService {
@@ -13,13 +14,13 @@ export class AuthService {
   redirectUrl: string;
   authenticationManager: AuthenticationManager;
 
-  constructor(private http: HttpClient) {
-    console.log(`[AuthService] Initializing...`);
+  constructor(private http: HttpClient, private logger: NGXLogger) {
+    this.logger.log(`[AuthService] Initializing...`);
     let providers = [
       new AngularHttpClientAuthenticationProviderClass(this.http, environment.apiUrl)
     ];
     this.authenticationManager = new AuthenticationManager(providers);
-    console.log(`[AuthService] Finished initializing...`);
+    this.logger.log(`[AuthService] Finished initializing...`);
   }
 
   authenticate(username: String, password: String) {
