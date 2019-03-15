@@ -1,13 +1,10 @@
-import {PasswordEncoder} from "./PasswordEncoder.interface";
-import {Authentication} from "./Authentication.interface";
-import {AuthenticationProvider} from "./AuthenticationProvider.interface";
-import {Exclusion} from "tslint/lib/rules/completed-docs/exclusion";
+import { Authentication } from "./Authentication.interface";
+import { AuthenticationProvider } from "./AuthenticationProvider.interface";
 
 
 export class AuthenticationManager {
 
   private authentication;
-  private passwordEncoder: PasswordEncoder;
 
   constructor(private providers: AuthenticationProvider[]) {
     if(providers == null || providers.length == 0) {
@@ -16,8 +13,6 @@ export class AuthenticationManager {
   }
 
   authenticate(authentication: Authentication) {
-    let result = null;
-
     // for(let provider of this.providers) {
     //   result = provider.authenticate(authentication);
     //
@@ -32,9 +27,5 @@ export class AuthenticationManager {
         return authentication;
       }
     );
-  }
-
-  isAuthenticated() {
-    return !!this.authentication;
   }
 }

@@ -1,6 +1,5 @@
-import {NgModule} from "@angular/core";
 import {LoginComponent} from "./components/login/login.component";
-import {AuthService} from "./services/auth.service";
+import {NgModule} from "@angular/core";
 
 @NgModule({
   declarations: [
@@ -10,7 +9,7 @@ import {AuthService} from "./services/auth.service";
   exports: [
     LoginComponent
   ],
-  providers: [AuthService],
+  providers: [],
   bootstrap: []
 })
 export class AuthModule {}
